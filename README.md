@@ -12,13 +12,13 @@
 
 ## Tech Stack:
 
-Frontend: HTML, CSS
-Scripting: JavaScript
+- Frontend: HTML, CSS
+- Scripting: JavaScript
 
 ## Features:
 
-Basic arithmetic operations (+, -, *, /)
-Trigonometric functions (sin, cos, tan)
-Special constants (π, e)
-Exponentiation (^2)
-Factorial calculation (x!)
+- Basic arithmetic operations (+, -, *, /)
+- Trigonometric functions (sin, cos, tan)
+- Special constants (π, e)
+- Exponentiation (^2)
+- Factorial calculation (x!)
