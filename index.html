@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CALCULATOR</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+        <script src="https://kit.fontawesome.com/4c81290473.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section>
+            <div class="container">
+                <div class="calculator">
+                    <input type="text" id="output" placeholder="Display" readonly/>
+                    <!--Buttons-->
+                    <button onclick="power()">x<sup>2</sup></button>
+                    <button onclick="pi()">π</button>
+                    <button onclick="exp()">e</button>
+                    <button class="ac_button" onclick="allClear()">C</button>
+                    <button class="ac_button" onclick="delLastChar()"><img src="icons8-backspaceeee.png" style="width: 32px; height: 32px;" /></button>
+
+                    <button onclick="fact()">x!</button>
+                    <button onclick="sqrt()">√</button>
+                    <button class="btn">(</button>
+                    <button class="btn">)</button>
+                    <button class="btn">÷</button>
+
+                    <button onclick="log()">log</button>
+                    <button class="btn">7</button>
+                    <button class="btn">8</button>
+                    <button class="btn">9</button>
+                    <button class="btn">*</button>
+
+                    <button onclick="sin()">sin</button>
+                    <button class="btn">4</button>
+                    <button class="btn">5</button>
+                    <button class="btn">6</button>
+                    <button class="btn">-</button>
+
+                    <button onclick="cos()">cos</button>
+                    <button class="btn">1</button>
+                    <button class="btn">2</button>
+                    <button class="btn">3</button>
+                    <button class="btn">+</button>
+
+                    <button onclick="tan()">tan</button>
+                    <button class="btn" onclick="display('%')">%</button>
+                    <button class="btn">0</button>
+                    <button class="btn">.</button>
+                    <button class="equal" onclick="calculate()">=</button>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="footer-content">
+                <h3>Made by Oeyshik Das</h3>
+                <ul>
+                    <li>
+                        <a href="https://github.com/Oeyshik" target="_blank">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/oeyshik-das-670156229/" target="_blank">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/Oeyshik_Das" target="_blank">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+        <script src="script.js"></script>
+    </body>
+</html>
