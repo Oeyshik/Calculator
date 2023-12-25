@@ -28,7 +28,9 @@ function calculate() {
         expression = expression.replace(/log/g, "Math.log10");
         expression = expression.replace(/√/g, "Math.sqrt");
         expression = expression.replace(/\^2/g, "**2");
-        expression = expression.replace(/!/g, "factorial");
+        expression = expression.replace(/(\d+)!/g, (num) => {
+            return factorial(parseInt(num));
+        });
         expression = expression.replace(/sin\(/g, "Math.sin(");
         expression = expression.replace(/cos\(/g, "Math.cos(");
         expression = expression.replace(/tan\(/g, "Math.tan(");
