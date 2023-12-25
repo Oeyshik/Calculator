@@ -1,80 +1,96 @@
 const result = document.getElementById("output");
 const btn = document.querySelectorAll(".btn");
 
-for (item of btn){
-    item.addEventListener("click", (e)=>{
-        btn_text = e.target.innerText;
-        if (btn_text == "÷"){
-            btn_text = "/";
+for (const item of btn) {
+    item.addEventListener("click", (e) => {
+        const btn_text = e.target.innerText.trim();
+        if (btn_text === "÷") {
+            result.value += "/";
+        } else if (btn_text === "*") {
+            result.value += "*";
+        } else if (btn_text === "+") {
+            result.value += "+";
+        } else if (btn_text === "-") {
+            result.value += "-";
+        } else {
+            result.value += btn_text;
         }
-    
-        if (btn_text == "*"){
-            btn_text = "*";
-        }
-    
-        if (btn_text == "+"){
-            btn_text = "+";
-        }
-    
-        if (btn_text == "-"){
-            btn_text = "-";
-        }
-    
-        result.value += btn_text;
     });
 }
 
 function calculate() {
     try {
-        if (result.value === "e") {
-            result.value = Math.exp(1);
-        } else if (result.value === "π") {
-            result.value = Math.PI;
-        } else if (result.value.endsWith("^2")) {
-            const base = parseFloat(result.value.slice(0, -2));
-            result.value = Math.pow(base, 2);
-        } else {
-            result.value = eval(result.value);
+        let expression = result.value;
+
+        // Replace textual representations with their mathematical counterparts
+        expression = expression.replace(/e/g, "Math.E");
+        expression = expression.replace(/π/g, "Math.PI");
+        expression = expression.replace(/log/g, "Math.log10");
+        expression = expression.replace(/√/g, "Math.sqrt");
+        expression = expression.replace(/\^2/g, "**2");
+        expression = expression.replace(/!/g, "factorial");
+        expression = expression.replace(/sin\(/g, "Math.sin(");
+        expression = expression.replace(/cos\(/g, "Math.cos(");
+        expression = expression.replace(/tan\(/g, "Math.tan(");
+
+        // Add closing parentheses for any open parentheses to balance the expression
+        let openParenCount = (expression.match(/\(/g) || []).length;
+        let closeParenCount = (expression.match(/\)/g) || []).length;
+
+        if (openParenCount > closeParenCount) {
+            const diff = openParenCount - closeParenCount;
+            for (let i = 0; i < diff; i++) {
+                expression += ')';
+            }
         }
-    } catch(error) {
-        alert("Invalid!!!");
+
+        // Evaluate the expression
+        const evaluated = eval(expression);
+
+        // Update the result value
+        result.value = evaluated;
+    } catch (error) {
+        result.value = "Invalid Expression";
     }
 }
 
-
-function allClear(){
+function allClear() {
     result.value = "";
 }
 
-function delLastChar(){
+function delLastChar() {
     result.value = result.value.slice(0, -1);
 }
 
-function power(){
+function power() {
     result.value += "^2";
 }
 
-function sin(){
-    result.value = Math.sin(result.value);
+function sin() {
+    result.value += "sin(";
 }
 
-function cos(){
-    result.value = Math.cos(result.value);
+function cos() {
+    result.value += "cos(";
 }
 
-function tan(){
-    result.value = Math.tan(result.value);
+function tan() {
+    result.value += "tan(";
 }
 
-function log(){
-    result.value = Math.log(result.value);
+function log() {
+    result.value += "log(";
 }
 
-function sqrt(){
-    result.value = Math.sqrt(result.value);
+function sqrt() {
+    if (result.value.endsWith(")") || !result.value.trim()) {
+        result.value += "√(";
+    } else {
+        result.value += "*√(";
+    }
 }
 
-function pi(){
+function pi() {
     result.value = "π";
 }
 
@@ -82,17 +98,17 @@ function exp() {
     result.value = "e";
 }
 
-function fact(){
-    var i, num, f;
-    f=1;
-    num = result.value;
-
-    for (i=1; i<=num; i++){
-        f=f*i;
-    }
-
-    i=i-1;
-
-    result.value = f;
+function fact() {
+    result.value += "!";
 }
 
+function factorial(num) {
+    if (num === 0 || num === 1) {
+        return 1;
+    }
+    let result = 1;
+    for (let i = 2; i <= num; i++) {
+        result *= i;
+    }
+    return result;
+}
